@@ -1,0 +1,51 @@
+﻿@using EmployeesDB.Entities
+@model IEnumerable<Employee>
+@{
+    ViewBag.Title = "Список сотрудников";
+}
+<div>
+    @Html.ActionLink("Добавить сотрудника...", "NewEmployee", "Employee")
+</div>
+<div>
+    @Html.ActionLink("Редактировать справочник должностей...", "PositionList", "Position")
+</div>
+
+<p>
+    @TempData["result"]
+</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.Label("lastName","Поиск по фамилии")
+            @Html.TextBox("lastName",null, new { @class = "form-control" })
+        </div>
+        <input type="submit" class="btn btn-primary" value="Поиск" />
+    }
+</div>
+<fieldset>
+    <legend>Список сотрудников</legend>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Должность</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Employee employee in Model)
+            {
+                <tr>
+                    <td>@employee.LastName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Patronymic</td>
+                    <td>@employee.Position.Title</td>
+                    <td>@Html.ActionLink("Удалить запись", "DeleteEmployee", "Employee", new { id = employee.Id }, null)</td>
+                    <td>@Html.ActionLink("Обновить запись", "UpdateEmployee", "Employee", new { id = employee.Id }, null)</td>
+                </tr>
+                }
+        </tbody>
+    </table>
+</fieldset>

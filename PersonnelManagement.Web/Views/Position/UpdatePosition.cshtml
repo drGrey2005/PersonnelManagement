@@ -1,0 +1,21 @@
+﻿@using EmployeesDB.Entities
+@model Position
+@{
+    ViewBag.Title = "Редактирование должности";
+}
+@Html.ActionLink("Вернуться к списку сотрудников", "EmployeesList", "Employee")
+<fieldset>
+    <legend>Новая должность</legend>
+    @using (Html.BeginForm("UpdatePosition","Position"))
+    {
+        <p>
+            @Html.ValidationSummary()
+        </p>
+        @Html.HiddenFor(p => p.Id)
+        <div class="form-group">
+            @Html.LabelFor(p => p.Title)
+            @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+        </div>
+       <input type="submit" class="btn btn-primary" value="Создать должность" />
+    }
+</fieldset>

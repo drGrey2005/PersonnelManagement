@@ -1,0 +1,33 @@
+﻿@using EmployeesDB.Entities
+@model Employee
+@{
+    ViewBag.Title = "Обновить данные сотрудника";
+}
+@Html.ActionLink("Вернуться к списку сотрудников", "EmployeesList", "Employee")
+<fieldset>
+    <legend>Редактирование информации по сотруднику</legend>
+    @using (Html.BeginForm("UpdateEmployee","Employee"))
+    {
+        <p>
+            @Html.ValidationSummary()
+        </p>
+        @Html.HiddenFor(e => e.Id)
+        <div class="form-group">
+            @Html.LabelFor(e => e.LastName)
+            @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.FirstName)
+            @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.Patronymic)
+            @Html.TextBoxFor(e => e.Patronymic, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(e => e.Position)
+            @Html.DropDownListFor(e => e.PositionId, (SelectList)ViewBag.Positions)
+        </div>
+        <input type="submit" class="btn btn-primary" value="Обновить" />
+    }
+</fieldset>

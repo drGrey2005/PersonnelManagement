@@ -1,0 +1,26 @@
+﻿@using EmployeesDB.Entities
+@model Employee
+@{
+    ViewBag.Title = "Удаление сотрудника";
+}
+<div>
+    @Html.ActionLink("Вернуться к списку сотрудников", "EmployeesList", "Employee")
+</div>
+<fieldset>
+    <legend>Удаление сотрудника</legend>
+    <p>
+        Сотрудник&nbsp;
+        <strong>
+            @Html.DisplayFor(e => e.LastName)&nbsp;
+            @Html.DisplayFor(e => e.FirstName)&nbsp;
+            @Html.DisplayFor(e => e.Patronymic)&nbsp;-&nbsp;
+            @Html.DisplayFor(e => e.Position.Title)&nbsp;
+            будет удален!
+        </strong>
+    </p>
+    @using (Html.BeginForm())
+    {
+        <input type="submit" value="Удалить" class="btn btn-primary"/>
+    }
+</fieldset>
+
